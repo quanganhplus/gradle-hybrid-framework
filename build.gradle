@@ -36,7 +36,7 @@ test {
     }
     
     useTestNG(){
-    suites 'src/test/resources/runNopCommerceUser.xml'
+    suites 'src/test/resources/runBankGuruTestcases.xml'
     outputDirectory = file("$projectDir/testng-report")
    }
    
@@ -44,6 +44,7 @@ test {
        showStandardStreams = true
    }
    
+   systemProperty 'envGradle', System.getProperty('envGradle', 'envGradle')
    systemProperty "file.encoding", "utf-8"
    reports.html.setDestination(file("$projectDir/gradle-output"))
 }
@@ -54,7 +55,7 @@ task smokeTests(type: Test) {
     }
 	
   	useTestNG() {
-    suites 'src/test/resources/runSaucelab.xml'
+    suites 'src/test/resources/runBankGuruTestcases.xml'
     outputDirectory = file("$projectDir/smoke-report")
   	}
   	
@@ -116,6 +117,10 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/io.qameta.allure/allure-testng
 	compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.18.1'
+	
+	// https://mvnrepository.com/artifact/org.aeonbits.owner/owner
+	compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
+	
 	
     // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
 	runtime group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.8'
